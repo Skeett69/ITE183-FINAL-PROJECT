@@ -1,0 +1,117 @@
+<?php
+$page_css = '<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: "Inter", sans-serif;
+    }
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+</style>';
+$page_js = '<script src="/assets/js/login.js"></script>';
+?>
+
+<div class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="max-w-md w-full">
+        <!-- Logo/Header -->
+        <div class="text-center mb-8">
+            <div class="inline-block p-4 bg-white/20 rounded-full backdrop-blur-lg mb-4">
+                <i class="fas fa-briefcase text-5xl text-white"></i>
+            </div>
+            <h2 class="text-4xl font-bold text-white mb-2">Job Portal</h2>
+            <p class="text-white/80">Sign in to your account</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="glass-effect rounded-2xl shadow-2xl p-8">
+            <!-- Error Message -->
+            <div id="errorMessage" class="hidden mb-4 bg-red-500/20 border border-red-500/50 text-white px-4 py-3 rounded-lg flex items-center gap-2">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Invalid credentials. Please try again.</span>
+            </div>
+
+            <form id="loginForm" method="POST" action="/login" class="space-y-6">
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-white text-sm font-medium mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-white/50"></i>
+                        </div>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                        />
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-white text-sm font-medium mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-white/50"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center text-white/80 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 mr-2 rounded border-white/20 bg-white/10 focus:ring-white/50">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="text-white/80 hover:text-white transition">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    id="submit"
+                    class="w-full bg-white text-purple-700 py-3 px-4 rounded-lg font-semibold hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/50 transition transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                    <span class="flex items-center justify-center gap-2">
+                        <span>Sign In</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
+
+                <!-- Sign Up Link -->
+                <div class="text-center text-white/80 text-sm">
+                    Don't have an account? 
+                    <a href="#" class="text-white font-medium hover:underline ml-1">
+                        Sign up
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-white/60 text-sm mt-8">
+            © 2026 Job Portal. All rights reserved.
+        </p>
+    </div>
+</div>
+

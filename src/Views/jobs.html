@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <title>Jobs - Job Portal</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+<!-- Main Content -->
+<div class="ml-64 p-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">Job Management</h1>
+                <p class="text-white/80">Manage and track all job postings</p>
+            </div>
+            <button class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
+                <i class="fas fa-plus"></i>
+                Post New Job
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium mb-1">Total Jobs</p>
+                    <h3 class="text-3xl font-bold text-gray-800" id="totalJobs">0</h3>
+                    <p class="text-sm text-green-600 mt-2">
+                        <i class="fas fa-arrow-up"></i> 12% from last month
+                    </p>
+                </div>
+                <div class="bg-blue-100 p-4 rounded-lg">
+                    <i class="fas fa-briefcase text-3xl text-blue-600"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium mb-1">Active Jobs</p>
+                    <h3 class="text-3xl font-bold text-gray-800">0</h3>
+                    <p class="text-sm text-green-600 mt-2">
+                        <i class="fas fa-arrow-up"></i> 8% increase
+                    </p>
+                </div>
+                <div class="bg-green-100 p-4 rounded-lg">
+                    <i class="fas fa-check-circle text-3xl text-green-600"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium mb-1">Applications</p>
+                    <h3 class="text-3xl font-bold text-gray-800">0</h3>
+                    <p class="text-sm text-blue-600 mt-2">
+                        <i class="fas fa-arrow-up"></i> 15% increase
+                    </p>
+                </div>
+                <div class="bg-purple-100 p-4 rounded-lg">
+                    <i class="fas fa-file-alt text-3xl text-purple-600"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium mb-1">Pending Review</p>
+                    <h3 class="text-3xl font-bold text-gray-800">0</h3>
+                    <p class="text-sm text-orange-600 mt-2">
+                        <i class="fas fa-clock"></i> Needs attention
+                    </p>
+                </div>
+                <div class="bg-orange-100 p-4 rounded-lg">
+                    <i class="fas fa-hourglass-half text-3xl text-orange-600"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jobs Table -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-800">All Job Postings</h2>
+                <div class="flex gap-3">
+                    <div class="relative">
+                        <input type="text" placeholder="Search jobs..." 
+                               class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                        <option>All Categories</option>
+                        <option>Engineering</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Job Title</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Category</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Level</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Applications</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="jobsTableBody" class="divide-y divide-gray-200">
+                    <tr>
+                        <td colspan="6" class="px-6 py-8 text-center text-gray-500">
+                            <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+                            <p>Loading jobs...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+// Fetch and display jobs
+async function loadJobs() {
+    try {
+        const response = await fetch('/api/jobs');
+        const result = await response.json();
+        
+        if (result.status === 'success' && result.data) {
+            const jobs = result.data.data || result.data;
+            document.getElementById('totalJobs').textContent = jobs.length;
+            
+            const tbody = document.getElementById('jobsTableBody');
+            if (jobs.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="px-6 py-8 text-center text-gray-500">
+                            <i class="fas fa-briefcase text-4xl mb-3 text-gray-300"></i>
+                            <p>No jobs found</p>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = jobs.map(job => `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-indigo-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-semibold text-gray-900">${job.name}</div>
+                                    <div class="text-sm text-gray-500">Full-time • Remote</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                Category ${job.job_category_id}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-900">
+                            Level ${job.job_level_id}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-900">
+                            <span class="font-semibold">0</span> applicants
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium space-x-2">
+                            <button class="text-indigo-600 hover:text-indigo-900">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-red-600 hover:text-red-900">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+    } catch (error) {
+        console.error('Error loading jobs:', error);
+        document.getElementById('jobsTableBody').innerHTML = `
+            <tr>
+                <td colspan="6" class="px-6 py-8 text-center text-red-500">
+                    <i class="fas fa-exclamation-circle text-3xl mb-3"></i>
+                    <p>Error loading jobs</p>
+                </td>
+            </tr>
+        `;
+    }
+}
+
+// Load jobs when page loads
+document.addEventListener('DOMContentLoaded', loadJobs);
+</script>
+
+</body>
+</html>
+
