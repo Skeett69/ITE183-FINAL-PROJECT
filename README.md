@@ -4,7 +4,9 @@ A **Job Portal Website** is a comprehensive online platform that connects job se
 
 🎨 **NEW: Modern UI with Tailwind CSS** - The frontend has been completely redesigned with a beautiful, modern interface using Tailwind CSS!
 
-🔴 Add Project Video
+Short system video
+
+🔴 https://drive.google.com/drive/folders/1W4ACGtRRLZ7OIPe0wD6t38sopaQpO5Fm?usp=drive_link
 
 ## Features
 
